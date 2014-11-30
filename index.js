@@ -1,5 +1,4 @@
-var http = require('http');
-var request = require('request');
+var express = require('express');
 var port = process.env.PORT || 5000;
 
 exports.type = 'main';
@@ -7,13 +6,15 @@ exports.type = 'main';
 exports.help = 'ControlPanel:\n' +
                'A control panel plugin for the bot.';
 
+var app = express();
+
 exports.main = function(bot) {
   'use strict';
-  bot.server = http.createServer(function(req, res) {
-    res.writeHeader(200, {'Content-Type': 'text/plain'});
-    res.write('bot control panel');
-    res.end();
+  app.get('/', function(req, res) {
+    res.send('bot control panel');
   });
-  bot.server.listen(port);
+  var server = app.listen(port);
   console.log('Server running on ' + port);
 };
+
+exports.port = port;
