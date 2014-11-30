@@ -4,6 +4,9 @@ var port = process.env.PORT || 5000;
 
 exports.type = 'main';
 
+exports.help = 'ControlPanel:\n' +
+               'A control panel plugin for the bot.';
+
 exports.main = function(bot) {
   'use strict';
   bot.server = http.createServer(function(req, res) {
